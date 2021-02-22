@@ -1,7 +1,115 @@
+
+
+.title {
+    text-align: center;
+    color: white;
+    font-size: 70px;
+    font-family: initial;
+    position: absolute;
+    left: 40px;
+    top: 35px;
+    font-weight: bold;
+}
+
+.form-search {
+    display: flex;
+
+    input {
+        border-radius: 1rem;
+        border: solid #057692 .1rem;;
+        background: rgba(255, 255, 255, 0.781);
+    }
+
+    button {
+        order: solid #057692 .1rem;
+    background-image: linear-gradient( to bottom, #07aed8, #057692);
+    color: white;
+    width: 105px;
+    font-size: 17px;
+    font-family: fangsong;
+    border: none;
+    border-radius: 1rem;
+    }
+}
+
+
+
+
 input {
-    width: 30%;
+    width: 100%;
     height: 45px;
     border-radius: 4%;
     border: 3px solid black;
     font-size: 20px;
 }
+
+
+.home-page {
+    width: 100%;
+    height: 100%;
+    background-image: url("./../../images/booook.png");
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+
+.search-field {
+    width: 20%;
+    margin:  0 auto;
+    height: 20%;
+    padding-top: 100px;
+}
+
+
+
+.books-container {
+    margin: 0 auto;
+    width: 100%;
+    background-color:#e1dcc5;
+
+
+    .books-cnt {
+        margin: 0 auto;
+        width: 60%;
+        background:#f9f9f9;
+
+        .books-cnt > h1 {
+            text-align: center;
+        }
+    }
+
+    .book-container {
+        display: flex;
+        border: solid #c1c1c1 .3rem;
+        background-color: white;
+        width: 80%;
+        height: 120px;
+        margin: 15px;
+
+        img {
+            height: 100%;
+            width: 15%;
+        }
+    }
+    .books-information {
+        margin-left: 10px;
+        margin-top: 0;
+        h2 {
+            color: #057692;
+    cursor: pointer;
+        }
+    }
+    
+        .editions {
+            display: block;
+        }
+    
+}
+
+
+.loading-message {
+    color: white
+}
+
+
+
+

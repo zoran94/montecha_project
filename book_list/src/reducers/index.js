@@ -1,4 +1,4 @@
-import { FETCH_SEARCHED_BOOK } from "./../actions/types"
+import { FETCH_SEARCHED_BOOK, DATA_LOADING } from "./../actions/types"
 
 const initialState = {
     books: [],
@@ -13,8 +13,14 @@ export const SearchForBooksReducer = (state = initialState, action) => {
         const books = action.payload
         return {
             ...state,
-            books
+            books,
+            loading: false
         }
+        case DATA_LOADING:
+            return {
+                ...state,
+                loading:true
+            }
         default: {
         return state
     }

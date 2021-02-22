@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FETCH_SEARCHED_BOOK } from "./types"
+import { FETCH_SEARCHED_BOOK, DATA_LOADING } from "./types"
 
 
 
@@ -11,14 +11,28 @@ const fetchSearchedBooks = (books) => {
     }
 }
 
+ const dataLoading = () => {
+    return {
+        type: DATA_LOADING
+    }
+}
+
+export const showLoading = () => async dispatch => {
+    try {
+      dispatch(dataLoading())
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
 
 export const fetchSearchedBooksSucces = (value)  => {
     console.log("testiranje 1 2 3", value)
      return dispatch => {
-            axios.get(`http://openlibrary.org/search.json?q=${value}`)
+            axios.get(`http://openlibrary.org/search.json?title=${value}`)
             .then(response => {
-                console.log(response)
-                dispatch(fetchSearchedBooks(response.data))
+                console.log(response.data)
+                dispatch(fetchSearchedBooks(response.data.docs))
             })
             .catch(error => console.log(error))
         }
