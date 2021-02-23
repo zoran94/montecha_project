@@ -1,5 +1,5 @@
 import axios from "axios"
-import { FETCH_SEARCHED_BOOK, DATA_LOADING } from "./types"
+import { FETCH_SEARCHED_BOOK, FETCH_BOOK_DETAILS, DATA_LOADING } from "./types"
 
 
 
@@ -10,6 +10,14 @@ const fetchSearchedBooks = (books) => {
         payload: books
     }
 }
+
+const fetchBookDetails = book => {
+    return {
+        type: FETCH_BOOK_DETAILS,
+        payload: book
+    }
+}
+
 
  const dataLoading = () => {
     return {

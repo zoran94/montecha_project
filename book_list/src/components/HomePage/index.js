@@ -1,12 +1,13 @@
-import React from "react"
+import React, { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import InputSearch from "./input"
 import SearchedResults from "./../../components/HomePage/SearchedResults"
 
 export const HomePage = () => {
+    
     const dispatch = useDispatch()
-    const { books } = useSelector(state => state.books)
+    const { books, loading } = useSelector(state => state.books)
 
     return (
         <>
@@ -15,7 +16,9 @@ export const HomePage = () => {
 
             <InputSearch />
         </div>
-            <SearchedResults />
+            {books.length && loading === false ? 
+            <SearchedResults /> 
+            : null}
 
        </div>
         </>

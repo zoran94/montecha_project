@@ -113,3 +113,45 @@ input {
 
 
 
+
+
+
+.paginate-container {
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+    color: #02598b;
+    cursor: pointer;
+}
+
+
+
+.listitem {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 70px;
+    height: 35px;
+    background: #f3f2f0;
+    cursor: pointer;
+    color: #02598b;
+    border: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+   }
+   .listitem:hover {
+       background-color:#02598b ;
+       color: white;
+   }
+   
+.link {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.active {
+    background-color: #02598b;
+    color: white;
+}
