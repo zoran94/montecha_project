@@ -1,12 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
-import { HomePage } from "./components/HomePage//index"
-
+import {BrowserRouter as Router,  Switch, Route } from "react-router-dom"
+import { MainPage } from "./components/index"
+import { BookPage } from "./components/BookPage/index"
 
 function App() {
   return (
     <div className="App">
-   <HomePage />
+    <Router>
+    <MainPage />
+    </Router>
     </div>
   );
 }

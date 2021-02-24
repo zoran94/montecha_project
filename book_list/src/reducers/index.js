@@ -21,7 +21,8 @@ export const SearchForBooksReducer = (state = initialState, action) => {
             const book = action.payload
             return {
                 ...state,
-                book
+                book,
+                loading: false
             }
         case DATA_LOADING:
             return {

@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { useDispatch, useSelector } from "react-redux"
+import { Redirect } from "react-router"
 import debounce from "lodash.debounce"
 
 import "./style.scss"
@@ -7,7 +8,7 @@ import { fetchSearchedBooksSucces, showLoading } from "./../../actions/actionCre
 
 
 
- const InputSearch = () => {
+ const InputSearch = ({bookSelected, setBookSelected  }) => {
     const [value, setValue] = useState("")
     const dispatch = useDispatch()
     const { loading } = useSelector(state => state.books)
@@ -22,9 +23,12 @@ import { fetchSearchedBooksSucces, showLoading } from "./../../actions/actionCre
         
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log("proba")
+        setBookSelected(false)
         dispatch(fetchSearchedBooksSucces(value))
         dispatch(showLoading())
+        if(bookSelected === true) {
+             window.history.back()
+        }
    }
 
     return (

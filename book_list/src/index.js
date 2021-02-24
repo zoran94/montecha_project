@@ -9,7 +9,7 @@ import  thunk from "redux-thunk"
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { SearchForBooksReducer } from "./reducers/index"
 
-const rootReducer = combineReducers({books: SearchForBooksReducer})
+const rootReducer = combineReducers({books: SearchForBooksReducer, book: SearchForBooksReducer})
 
 const composeEnhancers  = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

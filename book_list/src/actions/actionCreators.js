@@ -11,12 +11,30 @@ const fetchSearchedBooks = (books) => {
     }
 }
 
-const fetchBookDetails = book => {
+const fetchBookDetails = (book, descriptions) => {
     return {
         type: FETCH_BOOK_DETAILS,
-        payload: book
+        payload: book,
+        descriptions
     }
 }
+
+export const fetchBookDetailSuccess = (details) => async dispatch => {
+    console.log("provera")
+    try {
+        const isbnum = `ISBN:${details[0]}`
+        const  bookRes  = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
+        //const descriptions = await axios.get(`https://openlibrary.org/${descr}.json`)
+        dispatch(fetchBookDetails(bookRes.data))
+        //.log(data)        
+        console.log(isbnum)        
+    } catch(error){
+        console.log(error)
+    }
+}
+
+
+
 
 
  const dataLoading = () => {
