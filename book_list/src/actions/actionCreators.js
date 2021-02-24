@@ -23,11 +23,10 @@ export const fetchBookDetailSuccess = (details) => async dispatch => {
     console.log("provera")
     try {
         const isbnum = `ISBN:${details[0]}`
-        const  bookRes  = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
+        const  { data }  = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
         //const descriptions = await axios.get(`https://openlibrary.org/${descr}.json`)
-        dispatch(fetchBookDetails(bookRes.data))
-        //.log(data)        
-        console.log(isbnum)        
+        dispatch(fetchBookDetails(data[isbnum]))
+              
     } catch(error){
         console.log(error)
     }
