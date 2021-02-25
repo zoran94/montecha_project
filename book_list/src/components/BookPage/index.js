@@ -7,16 +7,20 @@ import "./style.scss"
 
 
 export const BookPage = () => {
-    const dispatch = useDispatch()
     const { book } = useSelector(state => state.books)
-
-    console.log(book)
-  
     return (
         <>
         <div className="book-container">
-        <img src={book.cover.large} />
-
+        <img src={book.cover ? book.cover.large : null} />
+        <div className="book-details">
+            <h1>{book.title}</h1>
+            <h2>by {book.authors ? book.authors.map(author => author.name): null}</h2>
+            <p>Num of pages: {book.number_of_pages ? book.number_of_pages : "no pages found"}</p>
+            <p>First published: {book.publish_date ? book.publish_date : "no date found"}</p>
+            <p>Publishers: {book.publishers ? book.publishers.map(publisher => publisher.name) : "no publisher found"}</p>
+            {/* <p>Subjects: </p> */}
+            {/* <ul>{book.subjects ? book.subjects.map(subject => <li>{subject.name}</li>) : "no subjects found"}</ul> */}
+        </div>
         </div>
         </>
     )

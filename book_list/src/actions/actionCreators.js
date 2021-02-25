@@ -1,6 +1,19 @@
 import axios from "axios"
-import { FETCH_SEARCHED_BOOK, FETCH_BOOK_DETAILS, DATA_LOADING } from "./types"
+import {
+    FETCH_SEARCHED_BOOK,
+    FETCH_BOOK_DETAILS,
+    DATA_LOADING,
+    NO_RESULT_FOUND
+} from "./types"
 
+
+
+
+const noResultsFound = () => {
+    return {
+        type: NO_RESULT_FOUND
+    }
+}
 
 
 
@@ -11,32 +24,16 @@ const fetchSearchedBooks = (books) => {
     }
 }
 
-const fetchBookDetails = (book, descriptions) => {
+const fetchBookDetails = (book) => {
     return {
         type: FETCH_BOOK_DETAILS,
-        payload: book,
-        descriptions
-    }
-}
-
-export const fetchBookDetailSuccess = (details) => async dispatch => {
-    console.log("provera")
-    try {
-        const isbnum = `ISBN:${details[0]}`
-        const  { data }  = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
-        //const descriptions = await axios.get(`https://openlibrary.org/${descr}.json`)
-        dispatch(fetchBookDetails(data[isbnum]))
-              
-    } catch(error){
-        console.log(error)
+        payload: book
     }
 }
 
 
 
-
-
- const dataLoading = () => {
+const dataLoading = () => {
     return {
         type: DATA_LOADING
     }
@@ -44,36 +41,35 @@ export const fetchBookDetailSuccess = (details) => async dispatch => {
 
 export const showLoading = () => async dispatch => {
     try {
-      dispatch(dataLoading())
+        dispatch(dataLoading())
     } catch (err) {
-      console.error(err)
+        console.error(err)
     }
-  }
+}
 
+export const fetchBookDetailSuccess = (details) => async dispatch => {
+    console.log("provera")
+    try {
+        const isbnum = `ISBN:${details[0]}`
+        const { data } = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
+        dispatch(fetchBookDetails(data[isbnum]))
+    } catch (error) {
+        console.log(error)
+    }
+}
 
-export const fetchSearchedBooksSucces = (value)  => {
-    console.log("testiranje 1 2 3", value)
-     return dispatch => {
-            axios.get(`http://openlibrary.org/search.json?title=${value}`)
+export const fetchSearchedBooksSucces = (value) => {
+    return dispatch => {
+        axios.get(`http://openlibrary.org/search.json?title=${value}`)
             .then(response => {
                 console.log(response.data)
-                dispatch(fetchSearchedBooks(response.data.docs))
+                if (response.data.docs.length === 0) {
+                    dispatch(noResultsFound())
+                } else {
+                    dispatch(fetchSearchedBooks(response.data.docs))
+
+                }
             })
             .catch(error => console.log(error))
-        }
-    // try {
-        // const data = await axios.get(`http://openlibrary.org/search.json?q=${value}`)
-        // console.log(data)
-        // dispatch(fetchSearchedBooks())
-    //    return dispatch => {
-    //         axios.get(`http://openlibrary.org/search.json?q=${value}`)
-    //         .then(response => {
-    //             console.log(response)
-    //             dispatch(fetchSearchedBooks(response.data))
-    //         })
-    //         .catch(error => console.log(error))
-    //     }
-    // } catch(error) {
-    //     console.log(error)
-    // }
+    }
 }

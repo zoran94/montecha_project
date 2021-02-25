@@ -1,7 +1,33 @@
 .book-container {
-    background: #e1dcc5;
+    display: flex;
+    padding: 10px;
+    background: #e6e6e6;
     height: 65%;
     width: 70%;
     margin: 0 auto;
-    margin-top: 20px;
+    border: solid #c1c1c1 .2rem;
+
+}
+
+img {
+    width: 500px;
+}
+
+.book-details {
+    margin-left: 10px;
+}
+
+.book-details h1 {
+    font-size: 50px;
+    font-family: initial;
+    font-weight: bolder;
+}
+.book-details h2 {
+    font-size: 25px;
+    font-family: initial;
+    font-weight: bolder;
+}
+.book-details p {
+    font-size: 22px;
+    font-family: initial;
 }

@@ -11,10 +11,11 @@ import { fetchSearchedBooksSucces, showLoading } from "./../../actions/actionCre
  const InputSearch = ({bookSelected, setBookSelected  }) => {
     const [value, setValue] = useState("")
     const dispatch = useDispatch()
-    const { loading } = useSelector(state => state.books)
+    const { loading, foundResults  } = useSelector(state => state.books)
 
     const debouncedValue = useCallback(debounce((value) =>  dispatch(fetchSearchedBooksSucces(value)), 1000),
     [])
+    
     const handleChange = (event) => {
         event.preventDefault()
         setValue(event.target.value)
@@ -43,7 +44,12 @@ import { fetchSearchedBooksSucces, showLoading } from "./../../actions/actionCre
                     type="text"/>
                 <button type="submit" >Find books</button>
                 </form>
-                {loading ? <h2 className="loading-message">Searching for books...</h2> : null}
+                {
+                    loading && <h2 className="loading-message">Searching for books...</h2>
+                }
+                {
+                    foundResults === false && <h2 className="no-books">No books found, please try again</h2>
+                }
             </div>
         </>
     )

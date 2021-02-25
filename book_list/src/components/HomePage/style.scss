@@ -41,6 +41,7 @@ input {
     border-radius: 4%;
     border: 3px solid black;
     font-size: 20px;
+    text-align: center;
 }
 
 
@@ -79,12 +80,11 @@ input {
 
     .book-container {
         display: flex;
-        border: solid #c1c1c1 .3rem;
-        background-color: white;
+        border: solid #c1c1c1 .1rem;
+        background-color: #e6e6e6;
         width: 80%;
         height: 120px;
-        margin: 15px;
-
+        margin-left: 65px;
         img {
             height: 100%;
             width: 15%;
@@ -110,7 +110,9 @@ input {
     color: white
 }
 
-
+.no-books {
+    color: white;
+}
 
 
 

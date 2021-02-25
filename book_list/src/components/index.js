@@ -10,12 +10,12 @@ export const MainPage = () => {
     const [bookSelected, setBookSelected] = useState(false)
 
     const dispatch = useDispatch()
-    const { books, loading } = useSelector(state => state.books)
+    const { books, book, loading } = useSelector(state => state.books)
 
 
     return (
         <>
-        <div className="home-page" style={books.length ? {"backgroundSize": "100% 300px"} : {"backgroundSize": "100% 100%"} }>
+        <div className="home-page" style={ {"backgroundSize": "100% 100%"}  }>
         <div className="search-field">
             <InputSearch bookSelected={bookSelected} setBookSelected={setBookSelected} />
         </div>
@@ -25,7 +25,7 @@ export const MainPage = () => {
             <SearchedResults setBookSelected={setBookSelected} /> 
             : null}
             </Route>
-            <Route path="/bookpage" component={BookPage}/>
+            <Route path="/bookpage" >{loading === false ? <BookPage /> : null}</Route>
             </Switch>
             
        </div>
