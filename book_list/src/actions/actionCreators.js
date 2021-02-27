@@ -48,7 +48,6 @@ export const showLoading = () => async dispatch => {
 }
 
 export const fetchBookDetailSuccess = (details) => async dispatch => {
-    console.log("provera")
     try {
         const isbnum = `ISBN:${details[0]}`
         const { data } = await axios.get(`https://openlibrary.org/api/books?bibkeys=${isbnum}&jscmd=data&format=json`)
@@ -62,7 +61,6 @@ export const fetchSearchedBooksSucces = (value) => {
     return dispatch => {
         axios.get(`http://openlibrary.org/search.json?title=${value}`)
             .then(response => {
-                console.log(response.data)
                 if (response.data.docs.length === 0) {
                     dispatch(noResultsFound())
                 } else {

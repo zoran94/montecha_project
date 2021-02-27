@@ -9,8 +9,28 @@
 
 }
 
+.cont-image {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    height: 100%;
+    button {
+    background-image: linear-gradient(to bottom, #07aed8, #057692);
+    width: 142px;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    height: 28px;
+    font-family: inherit;
+    cursor: pointer;
+    }
+}
+
+
+
 img {
     width: 500px;
+    height: 90%
 }
 
 .book-details {
@@ -31,3 +51,4 @@ img {
     font-size: 22px;
     font-family: initial;
 }
+

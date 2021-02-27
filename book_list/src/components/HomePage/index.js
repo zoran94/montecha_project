@@ -9,7 +9,7 @@ import { fetchBookDetailSuccess, showLoading } from "./../../actions/actionCreat
 
 const SearchedResults = ({ setBookSelected }) => {
     const [currentPage, setCurrentPage] = useState(1)
-    const [booksPerPage, setBooksPerPage] = useState(5)
+    const [booksPerPage] = useState(5)
     const dispatch = useDispatch()
 
     const { books } = useSelector(state => state.books)
@@ -36,16 +36,15 @@ const SearchedResults = ({ setBookSelected }) => {
     for (let i = 0; i <= Math.ceil(totalBooks / booksPerPage); i++) {
         pageNumbers.push(i)
     }
-    console.log(pageNumbers)
-
+    
     return (
         <>
             <div className="books-container" style={books.length ? { height: "1000px" } : null}>
 
                 <div className="books-cnt" style={books.length ? { padding: "25px" } : null}>
-                    {books.length > 0 && currentBooks.map(book => (
+                    {books.length > 0 && currentBooks.map((book, index) => (
                         <>
-                            <div className="book-container">
+                            <div className="book-container" key={index}>
 
                                 {book.isbn ? <img src={`http://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg?default=false`} />
                                     : <h2>No picture</h2>}
